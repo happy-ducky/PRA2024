@@ -6,11 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="PRA2024" />
+        <module name="Pracownia2020-2021" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="17">
-      <module name="PRA2024" target="17" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="17" />
   </component>
 </project>
