@@ -40,6 +40,8 @@ public class MainStreams {
         String[] stringArray = new String[]{"Streams", "can", "be", "created", "from", "arrays"};
 
         Arrays.stream(stringArray).forEach(System.out::println);
+
+        Stream<Student> whatIsIt = students.stream().filter(s -> s.getName().length() > 2);
     }
 
 }

@@ -24,7 +24,7 @@ public class Task {
     }
 
     public static List<String> toUpperCase(List<String> collection) {
-       // ToDo
+        //TO DO collection.stream().//like up n function there homework
         return null;
     }
 
