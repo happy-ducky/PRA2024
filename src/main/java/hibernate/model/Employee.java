@@ -1,17 +1,27 @@
 package hibernate.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
-@Entity
+@Entity//to sprawia ze jest zwiazane z tabela w bazie danych
 @Table(name = "EMPLOYEE", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"first_name","last_name"})})
 public class Employee {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue //@ID spariwa że klucz @generated value że ma byc z bazy danych
     @Column(name = "id")
     private int id;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="Address_ID", referencedColumnName = "id")
+    Address address;
+
+
+    @ElementCollection
+    private List<String> phones = new ArrayList<>();
 
     @Column(name = "first_name")
     private String firstName;
