@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -58,10 +60,10 @@ public class ProductController {
      * Save product to database.
      */
     @PostMapping(value = "/product")
-    public ResponseEntity<Object> create(@RequestBody Product product) {
+    public ResponseEntity<Product> create(@RequestBody @Valid Product product) {
         product.setProductId(UUID.randomUUID().toString());
         productService.saveProduct(product);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(product);
     }
 
     @ExceptionHandler
@@ -106,6 +108,11 @@ public class ProductController {
     @DeleteMapping(value = "/products/{id}")
     public ResponseEntity deleteBadRequest(@PathVariable Integer id) {
         return new ResponseEntity(HttpStatus.FORBIDDEN);
+    }
+
+    @GetMapping(value = "/products/{page}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Product> list(@PathVariable("page") Integer pageNr,@RequestParam(value = "size",required = false) Optional<Integer> howManyOnPage) {
+        return productService.listAllProductsPaging(pageNr, howManyOnPage.orElse(2));
     }
 
 }

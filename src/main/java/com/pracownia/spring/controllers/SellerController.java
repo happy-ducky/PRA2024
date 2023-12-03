@@ -67,9 +67,15 @@ public class SellerController {
         return sellerService.getBestSeller().get();
     }
 
-    @GetMapping(value = "/seller/{id}", produces = MediaType.APPLICATION_ATOM_XML_VALUE)
+    @GetMapping(value = "/seller/{id}", produces = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
     public Seller getByPublicId(@PathVariable("id") Integer publicId) {
         return sellerService.getSellerById(publicId).get();
+    }
+
+    @GetMapping(value = "/seller/{id}/prices/sum", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Long getSum(@PathVariable("id") Integer publicId) {
+        return sellerService.getSum(publicId);
     }
 }

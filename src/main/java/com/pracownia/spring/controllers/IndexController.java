@@ -27,6 +27,9 @@ public class IndexController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private SellerService sellerService;
+
     @GetMapping(value = "")
     String index() {
         return "index";
@@ -57,6 +60,9 @@ public class IndexController {
         productService.saveProduct(p1);
         productService.saveProduct(p2);
         productService.saveProduct(p3);
+
+        Seller seller3 = new Seller("Kaufland", "Poznan", new ArrayList<>());
+        sellerService.saveSeller(seller3);
 
         return "Model Generated";
     }
